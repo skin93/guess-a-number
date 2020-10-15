@@ -8,9 +8,11 @@ import {
   Keyboard,
   Alert,
 } from 'react-native'
+import BaseBodyText from '../components/UI/BaseBodyText'
 
 import BaseCard from '../components/UI/BaseCard'
 import BaseInput from '../components/UI/BaseInput'
+import BaseTitleText from '../components/UI/BaseTitleText'
 import NumberContainer from '../components/UI/NumberContainer'
 import colors from '../constants/colors'
 
@@ -48,7 +50,7 @@ const StartGameScreen = (props) => {
   if (confirmed) {
     confirmedOutput = (
       <BaseCard style={styles.summaryContainer}>
-        <Text>You selected</Text>
+        <BaseBodyText>You selected</BaseBodyText>
         <NumberContainer>{selectedNumber}</NumberContainer>
         <Button
           title='START GAME'
@@ -65,9 +67,9 @@ const StartGameScreen = (props) => {
       }}
     >
       <View style={styles.screen}>
-        <Text style={styles.title}>Start a New Game!</Text>
+        <BaseTitleText style={styles.title}>Start a New Game!</BaseTitleText>
         <BaseCard style={styles.inputContainer}>
-          <Text>Select a Number</Text>
+          <BaseBodyText>Select a Number</BaseBodyText>
           <BaseInput
             style={styles.input}
             blurOnSubmit

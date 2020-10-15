@@ -13,6 +13,7 @@ import BaseBodyText from '../components/UI/BaseBodyText'
 import BaseCard from '../components/UI/BaseCard'
 import BaseInput from '../components/UI/BaseInput'
 import BaseTitleText from '../components/UI/BaseTitleText'
+import BaseButton from '../components/UI/BaseButton'
 import NumberContainer from '../components/UI/NumberContainer'
 import colors from '../constants/colors'
 
@@ -52,10 +53,9 @@ const StartGameScreen = (props) => {
       <BaseCard style={styles.summaryContainer}>
         <BaseBodyText>You selected</BaseBodyText>
         <NumberContainer>{selectedNumber}</NumberContainer>
-        <Button
-          title='START GAME'
-          onPress={() => props.onStartGame(selectedNumber)}
-        />
+        <BaseButton onPress={() => props.onStartGame(selectedNumber)}>
+          START GAME
+        </BaseButton>
       </BaseCard>
     )
   }

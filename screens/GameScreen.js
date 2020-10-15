@@ -1,12 +1,12 @@
 import React, { useState, useRef, useEffect } from 'react'
 import { StyleSheet, Text, View, Alert, ScrollView } from 'react-native'
 import { Ionicons } from '@expo/vector-icons'
+import DefaultStyles from '../constants/default-styles'
 
 import NumberContainer from '../components/UI/NumberContainer'
 import BaseCard from '../components/UI/BaseCard'
-
-import DefaultStyles from '../constants/default-styles'
 import BaseButton from '../components/UI/BaseButton'
+import BaseBodyText from '../components/UI/BaseBodyText'
 
 const generateRandomBetween = (min, max, exclude) => {
   min = Math.ceil(min)
@@ -19,6 +19,13 @@ const generateRandomBetween = (min, max, exclude) => {
     return rndNum
   }
 }
+
+const renderListItem = (value, numOfRound) => (
+  <View key={value} style={styles.listItem}>
+    <BaseBodyText>#{numOfRound}</BaseBodyText>
+    <BaseBodyText>{value}</BaseBodyText>
+  </View>
+)
 
 const GameScreen = (props) => {
   const initialGuess = generateRandomBetween(1, 100, props.userChoice)
@@ -72,13 +79,13 @@ const GameScreen = (props) => {
           <Ionicons name='md-add' size={24} color='white' />
         </BaseButton>
       </BaseCard>
-      <ScrollView>
-        {pastGuesses.map((guess) => (
-          <View key={guess}>
-            <Text>{guess}</Text>
-          </View>
-        ))}
-      </ScrollView>
+      <View style={styles.list}>
+        <ScrollView>
+          {pastGuesses.map((guess, index) =>
+            renderListItem(guess, pastGuesses.length - index)
+          )}
+        </ScrollView>
+      </View>
     </View>
   )
 }
@@ -97,5 +104,18 @@ const styles = StyleSheet.create({
     marginTop: 20,
     width: 400,
     maxWidth: '90%',
+  },
+  list: {
+    flex: 1,
+    width: '80%',
+  },
+  listItem: {
+    borderColor: '#ccc',
+    borderWidth: 1,
+    padding: 15,
+    marginVertical: 10,
+    backgroundColor: 'white',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
   },
 })
